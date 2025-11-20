@@ -96,7 +96,6 @@ function collides_with_enemy(new_x, new_y)
   return false
 end
 
--- TODO: Use a sprite, and add movement to that
 -- Handles firing logic for the laser weapon.
 function shoot()
   local wants_to_fire = btn(button_x)
