@@ -1,6 +1,6 @@
 --Player controls--
 
--- Initialize player position and size, also the colors we'll use
+-- Initialize player position
 function init_player()
   player = {
     x = screen_max_x / 2 - (player_width / 2),

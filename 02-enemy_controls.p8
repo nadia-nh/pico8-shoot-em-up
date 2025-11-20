@@ -10,7 +10,7 @@ function init_enemies()
     add(enemies, {
       x = rnd(screen_max_x - enemy_width),
       y = rnd(screen_max_y / 3),
-      delta_x = 1 / (speed_min - (rnd(get_difficulty()))),
+      delta_x = 1 / (speed_min - flr(rnd(get_difficulty()))),
       delta_y = 1 / (speed_min - flr(rnd(get_difficulty()))),
       move_right = rnd(1) < 0.5,
       alive = true,
@@ -102,7 +102,7 @@ function bounce_on_wall(enemy)
   end
 end
 
--- Checks if the "laser" hit any of the enemies
+-- Checks if the laser hit any of the enemies
 function detect_attacks()
   if is_shooting() then
     for enemy in all(enemies) do

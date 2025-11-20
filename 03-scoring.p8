@@ -1,4 +1,5 @@
 -- Scoring --
+
 function init_score()
   score = 0
   health = 4
@@ -67,9 +68,9 @@ function draw_laser_meter(x, y)
     remaining = max_frames - depletion
   end
 
-  local fill_width = flr((remaining / max_frames) * meter_width)
-
   rectfill(x, y, x + meter_width - 1, y + meter_height - 1, color_dark_gray)
+
+  local fill_width = flr((remaining / max_frames) * meter_width)
 
   if fill_width > 0 then
     rectfill(
