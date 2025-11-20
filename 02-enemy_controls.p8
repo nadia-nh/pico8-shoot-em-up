@@ -151,10 +151,10 @@ function collides_with_player(enemy)
   local enemy_min_y = enemy.y
   local enemy_max_y = enemy.y + enemy_height
 
-  local player_min_x = player.x
-  local player_max_x = player.x + player_width
-  local player_min_y = player.y
-  local player_max_y = player.y + player_height
+  local player_min_x = player.x - epsilon
+  local player_max_x = player.x + player_width + epsilon
+  local player_min_y = player.y - epsilon
+  local player_max_y = player.y + player_height + epsilon
 
   local separated =
     enemy_max_x <= player_min_x or

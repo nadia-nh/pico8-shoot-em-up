@@ -63,7 +63,7 @@ function clamp_coordinates()
     screen_max_y - player_height - 1)
 end
 
--- Returns true if the proposed player position overlaps a living enemy
+-- Returns true if the new player position overlaps a living enemy
 function collides_with_enemy(new_x, new_y)
   if not enemies then
     return false
@@ -76,10 +76,10 @@ function collides_with_enemy(new_x, new_y)
 
   for enemy in all(enemies) do
     if enemy.alive then
-      local enemy_min_x = enemy.x
-      local enemy_max_x = enemy.x + enemy_width
-      local enemy_min_y = enemy.y
-      local enemy_max_y = enemy.y + enemy_height
+      local enemy_min_x = enemy.x - epsilon
+      local enemy_max_x = enemy.x + enemy_width + epsilon
+      local enemy_min_y = enemy.y - epsilon
+      local enemy_max_y = enemy.y + enemy_height + epsilon
 
       local separated =
         player_max_x <= enemy_min_x or
