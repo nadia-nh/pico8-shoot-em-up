@@ -129,9 +129,8 @@ end
 -- Mark the enemy as not alive, does not destroy it
 function destroy_enemy(enemy)
   -- TODO: add an animation when the enemy dies
-  -- TODO: raise an exception when enemy isn't alive?
   if not enemy.alive then
-    return
+    error("destroy_enemy called on inactive enemy")
   end
 
   enemy.alive = false
