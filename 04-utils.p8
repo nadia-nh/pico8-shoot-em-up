@@ -42,8 +42,8 @@ function init_constants()
   screen_min_y = 0.0
   screen_max_y = 128.0
 
-  -- lower values equal more speed
-  speed_min = 10
+  speed_min = 0.1
+  speed_max = 0.75
   difficulty_max = 10
   enemy_count = 3
   shooting_distance_min = 0.5
@@ -94,4 +94,10 @@ function get_difficulty_progress()
   local max_step = max(1, difficulty_max - 1)
   local progress = clamp(difficulty - 1, 0, max_step)
   return (progress / max_step) ^ 0.75
+end
+
+-- Scales speed from ~0.5 at level 1 to ~3.0 at max difficulty
+function get_speed()
+  local progress = get_difficulty_progress()
+  return speed_min + (speed_max - speed_min) * progress
 end

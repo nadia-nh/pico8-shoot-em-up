@@ -7,12 +7,13 @@ function init_enemies()
   enemies = {}
 
   for i = 1, max_enemies do
+    local base_speed = get_speed()
     add(enemies, {
       x = rnd(screen_max_x - enemy_width),
       y = rnd(screen_max_y / 3),
       prev_y = 0,
-      delta_x = 1 / (speed_min - flr(rnd(get_difficulty()))),
-      delta_y = 1 / (speed_min - flr(rnd(get_difficulty()))),
+      delta_x = base_speed * (0.5 + rnd(0.4)),
+      delta_y = base_speed * (0.5 + rnd(0.4)),
       move_right = rnd(1) < 0.5,
       alive = true,
       })
@@ -65,13 +66,12 @@ end
 -- Clamp x coordinate and change direction
 function bounce_on_wall(enemy)
   local max_value = screen_max_x - enemy_width - 1
-  enemy.x = clamp(
-    enemy.x,
-    screen_min_x,
-    max_value)
-
-  if enemy.x == screen_min_x or enemy.y == max_value then
-    enemy.move_right = not enemy.move_right
+  if less_or_equal(enemy.x, screen_min_x) then
+    enemy.x = screen_min_x
+    enemy.move_right = true
+  elseif greater_or_equal(enemy.x, max_value) then
+    enemy.x = max_value
+    enemy.move_right = false
   end
 end
 
