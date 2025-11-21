@@ -350,17 +350,18 @@ end
 -- scoring --
 
 function init_score()
-  score = 0
   health = health_max
+  enemies_left = 165
+  health_lost = 0
   difficulty = 1
 end
 
 function increase_score()
-  score += 1
+  enemies_left -= 1
 end
 
 function decrease_score()
-  score -= 1
+  health_lost += difficulty_max - difficulty + 1
   lose_health()
 end
 
@@ -434,12 +435,16 @@ function draw_laser_meter(x, y)
   end
 end
 
+function get_score()
+  return max(0, flr(100 * (enemy_total - enemies_left) / enemy_total - health_lost * 0.4))
+end
+
 function show_win_message()
-  print("you win! score:"..score, 30, 100)
+  print("you win! score:"..get_score(), 30, 100)
 end
 
 function show_lose_message()
-  print("game over! score:"..score, 30, 100)
+  print("game over! score:"..get_score(), 30, 100)
 end
 
 -->8
@@ -488,10 +493,11 @@ function init_constants()
   screen_min_y = 0.0
   screen_max_y = 128.0
 
-  speed_min = 0.1
+  speed_min = 0.15
   speed_max = 0.75
   difficulty_max = 10
   enemy_count = 3
+  enemy_total = 165
   shooting_distance_min = 0.5
   health_max = 4
 
