@@ -43,10 +43,11 @@ function init_constants()
   screen_min_y = 0.0
   screen_max_y = 128.0
 
-  speed_min = 0.1
+  speed_min = 0.15
   speed_max = 0.75
   difficulty_max = 10
   enemy_count = 3
+  enemy_total = 165
   shooting_distance_min = 0.5
   health_max = 4
 
